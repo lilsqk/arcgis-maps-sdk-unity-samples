@@ -1209,6 +1209,7 @@ MonoBehaviour:
   - ComponentSampleScene
   - FeatureLayer
   - LineOfSight
+  - 3rdPersonCamera
 --- !u!4 &1201840878
 Transform:
   m_ObjectHideFlags: 0
