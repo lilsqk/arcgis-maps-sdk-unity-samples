@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 447.05164, g: 464.86475, b: 459.43164, a: 1}
+  m_IndirectSpecularColor: {r: 478.17065, g: 532.7241, b: 641.6885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -199,7 +199,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684003164}
   m_LocalRotation: {x: 0.37843022, y: 0.47267172, z: -0.23527527, w: 0.7602747}
-  m_LocalPosition: {x: -8189474.5, y: 332.59747, z: 5065226}
+  m_LocalPosition: {x: -8189474.5, y: 332.59747, z: 5700852.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 990959145}
@@ -438,7 +438,7 @@ MonoBehaviour:
   m_LocalPosition:
     x: -8189474.375035996
     y: 332.59747655849264
-    z: 5065226.074228296
+    z: 5700852.7331031915
   m_LocalRotation:
     value:
       x: -0.37843022
@@ -523,7 +523,7 @@ GameObject:
   - component: {fileID: 990959143}
   - component: {fileID: 990959142}
   m_Layer: 0
-  m_Name: MapView
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -554,9 +554,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiKey: 
-  basemap: 
+  basemap: https://www.arcgis.com/sharing/rest/content/items/8d569fbc4dc34f68abae8d72178cee05/data
   basemapType: 0
-  elevation: 
+  elevation: https://elevation3d.arcgis.com/arcgis/rest/services/WorldElevation3D/Terrain3D/ImageServer
   enableExtent: 0
   extent:
     GeographicCenter:
@@ -602,7 +602,7 @@ MonoBehaviour:
   m_LocalPosition:
     x: 0
     y: 0
-    z: 0
+    z: -0.0000000007081154551613622
   m_LocalRotation:
     value:
       x: 0
@@ -724,7 +724,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681604014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8235933.5, y: 0, z: 4536109}
+  m_LocalPosition: {x: -8235933.5, y: 0, z: 4975324.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 990959145}
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_LocalPosition:
     x: -8235933.624908454
     y: 0
-    z: 4536108.79528458
+    z: 4975324.560358271
   m_LocalRotation:
     value:
       x: 0
