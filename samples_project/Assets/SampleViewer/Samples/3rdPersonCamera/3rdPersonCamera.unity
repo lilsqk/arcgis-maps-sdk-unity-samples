@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 447.28455, g: 465.07544, b: 459.61914, a: 1}
+  m_IndirectSpecularColor: {r: 447.89722, g: 466.0652, b: 461.12988, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -160,7 +160,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dec07aed717f064439897cd81726237a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -404
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dec07aed717f064439897cd81726237a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dec07aed717f064439897cd81726237a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -341
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dec07aed717f064439897cd81726237a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -288,12 +288,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684003164}
-  m_LocalRotation: {x: 0.3584006, y: 0.48026997, z: -0.22395355, w: 0.7685926}
-  m_LocalPosition: {x: 0, y: 300, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -399.047, y: 42, z: -334.471}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 990959145}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &684003166
 MonoBehaviour:
@@ -434,13 +434,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position:
-    x: -73.5673
-    y: 45.5017
-    z: 300
-    SRWkid: 4326
+    x: -8189873.422033066
+    y: 5700518.262094891
+    z: 42
+    SRWkid: 3857
   rotation:
-    Heading: 64
-    Pitch: 40
+    Heading: 0
+    Pitch: 90
     Roll: 0
 --- !u!114 &684003169
 MonoBehaviour:
@@ -493,7 +493,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.5
-  far clip plane: 43743.156
+  far clip plane: 29998.5
   field of view: 45
   orthographic: 0
   orthographic size: 5
@@ -526,15 +526,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsInitialized: 1
   m_LocalPosition:
-    x: -8189474.375035996
-    y: 300
-    z: 5700852.7331031915
+    x: -8189873.422033066
+    y: 42
+    z: 5700518.262094891
   m_LocalRotation:
     value:
-      x: 0.3584006
-      y: 0.48026997
-      z: -0.22395356
-      w: 0.7685926
+      x: 0
+      y: 0
+      z: 0
+      w: 1
   m_LocalScale:
     x: 1
     y: 1
@@ -710,8 +710,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1681604015}
   - {fileID: 684003165}
+  - {fileID: 1681604015}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -725,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 1008701132057969536, guid: 5c8d41469caa00a47b13577f89162b3a, type: 3}
       propertyPath: CameraComponent
       value: 
-      objectReference: {fileID: 684003170}
+      objectReference: {fileID: 0}
     - target: {fileID: 1008701132057969536, guid: 5c8d41469caa00a47b13577f89162b3a, type: 3}
       propertyPath: MapViewComponent
       value: 
@@ -786,6 +786,10 @@ PrefabInstance:
       propertyPath: MapViewComponent
       value: 
       objectReference: {fileID: 990959143}
+    - target: {fileID: 3071704059086465574, guid: 5c8d41469caa00a47b13577f89162b3a, type: 3}
+      propertyPath: arcGISMapComponent
+      value: 
+      objectReference: {fileID: 990959143}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c8d41469caa00a47b13577f89162b3a, type: 3}
 --- !u!1 &1681604014
@@ -800,7 +804,7 @@ GameObject:
   - component: {fileID: 1681604017}
   - component: {fileID: 1681604016}
   m_Layer: 0
-  m_Name: LocationParent
+  m_Name: Hero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -814,12 +818,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681604014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalPosition: {x: -399.19168, y: 40, z: -332.2585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 67376242}
   m_Father: {fileID: 990959145}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1681604016
 MonoBehaviour:
@@ -834,9 +838,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position:
-    x: -73.5673
-    y: 45.5017
-    z: 50
+    x: -73.570886
+    y: 45.499608
+    z: 40
     SRWkid: 4326
   rotation:
     Heading: 0
@@ -856,9 +860,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsInitialized: 1
   m_LocalPosition:
-    x: -8189474.375035996
-    y: 50
-    z: 5700852.7331031915
+    x: -8189873.56672998
+    y: 40
+    z: 5700520.474576027
   m_LocalRotation:
     value:
       x: 0
