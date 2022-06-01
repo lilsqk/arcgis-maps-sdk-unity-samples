@@ -80,19 +80,21 @@ public class MapManMovement : MonoBehaviour
 
         //Change animation
         Debug.Log(CharacterController.velocity.magnitude);
-        if(CharacterController.velocity.magnitude == 0f)
-        {
-            Animator.SetBool("IsWalking", false); 
-            Animator.SetBool("IsRunning", false);
-        }
-        else if(CharacterController.velocity.magnitude > 0f && CharacterController.velocity.magnitude < 3f)
-        {
-            Animator.SetBool("IsWalking", true);
-        }
-        else
-        {
-            Animator.SetBool("IsRunning", true);
-        }
+
+        Animator.SetBool("IsWalking", CharacterController.velocity.magnitude > 0f);
+        //if (CharacterController.velocity.magnitude == 0f)
+        //{
+        //    Animator.SetBool("IsWalking", false); 
+        //    Animator.SetBool("IsRunning", false);
+        //}
+        //else if(CharacterController.velocity.magnitude > 0f && CharacterController.velocity.magnitude < 5f)
+        //{
+        //    Animator.SetBool("IsWalking", true);
+        //}
+        //else
+        //{
+        //    Animator.SetBool("IsRunning", true);
+        //}
         // Bring map man above the map if he falls below.
         if (characterHP.UniversePosition.y < 0)
         {
