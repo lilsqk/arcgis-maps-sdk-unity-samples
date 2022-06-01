@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 480.0044, g: 535.7666, b: 612.0322, a: 1}
+  m_IndirectSpecularColor: {r: 479.2915, g: 533.6196, b: 606.88086, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684003164}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -398.54, y: -58.19, z: -335.34}
+  m_LocalPosition: {x: -398.54, y: -54.5, z: -335.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 990959145}
@@ -441,7 +441,7 @@ MonoBehaviour:
   position:
     x: -8189872.915044541
     y: 5700517.393106854
-    z: 41.810001373291016
+    z: 45.5
     SRWkid: 3857
   rotation:
     Heading: 0
@@ -532,7 +532,7 @@ MonoBehaviour:
   m_IsInitialized: 1
   m_LocalPosition:
     x: -8189872.915044541
-    y: 41.810001373291016
+    y: 45.5
     z: 5700517.393106854
   m_LocalRotation:
     value:
@@ -557,11 +557,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1681604017}
-  offset:
-    x: 0
-    y: 2.5
-    z: -3.5
-  speed: 0.05
+  offset: {x: 0, y: 2.5, z: -3.5}
+  smoothing: 3
 --- !u!850595691 &956311754
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -843,7 +840,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681604014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -399.19168, y: 0, z: -332.2585}
+  m_LocalPosition: {x: -399.19168, y: -50, z: -332.2585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 67376242}
@@ -865,7 +862,7 @@ MonoBehaviour:
   position:
     x: -8189873.56672998
     y: 5700520.474576027
-    z: 100
+    z: 50
     SRWkid: 3857
   rotation:
     Heading: 0
@@ -886,7 +883,7 @@ MonoBehaviour:
   m_IsInitialized: 1
   m_LocalPosition:
     x: -8189873.56672998
-    y: 100
+    y: 50
     z: 5700520.474576027
   m_LocalRotation:
     value:
@@ -928,9 +925,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd65a2779696114fab783ee2098fd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationController: {fileID: 9100000, guid: b70aeca021a9767458c4e6c4de8571e5, type: 2}
-  Speed: 5
-  jumpSpeed: 8
-  GravityValue: 9.8
+  Animator: {fileID: 4698498}
+  Speed: 10
+  jumpSpeed: 10
+  gravityScalar: 1
   CameraTransform: {fileID: 684003172}
   offset: {x: 0, y: 2.5, z: -3.5}

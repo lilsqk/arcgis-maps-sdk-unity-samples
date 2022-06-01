@@ -1,23 +1,26 @@
 using Esri.HPFramework;
+using System;
 using UnityEditor.Animations;
 using UnityEngine;
 
 public class MapManMovement : MonoBehaviour
 {
-    [SerializeField] private AnimatorController AnimationController;
+    [SerializeField] private Animator Animator;
 
-    [SerializeField] private float Speed = 2f;
-    [SerializeField] private float jumpSpeed = 8.0f;
+    [SerializeField] private float Speed = 10f;
+    [SerializeField] private float jumpSpeed = 10f;
+    [SerializeField] private float gravityScalar = 1f;
 
-    [SerializeField] private float GravityValue = 9.8f;
     [SerializeField] private HPTransform CameraTransform;
     [SerializeField] private Vector3 offset;
 
-    private float CurrentVerticalSpeed = 0f;
+    private float currentY = 0f;
 
     private bool started = false;
 
     private CharacterController CharacterController;
+
+    private HPTransform characterHP;
 
 #if ENABLE_INPUT_SYSTEM
     InputAction movement;
@@ -48,49 +51,53 @@ public class MapManMovement : MonoBehaviour
     private void Start()
     {
         CharacterController = GetComponent<CharacterController>();
+        characterHP = GetComponent<HPTransform>();
     }
 
     // Update is called once per frame
     private void Update()
     {
         Vector3 movement = new Vector3(0f, 0f, 0f);
-
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.z = Input.GetAxisRaw("Vertical");
         movement *= Speed;
 
-        
-        if(started)
+        if (CharacterController.isGrounded)
         {
-
-
-            if (!CharacterController.isGrounded)
+            if (Input.GetButtonDown("Jump"))
             {
-                movement.y += Physics.gravity.y;
-            }
-
-            if (CharacterController.isGrounded)
-            {
-                movement.y = 0;
+                currentY = jumpSpeed;
             }
         }
-        if (Input.GetButtonDown("Jump"))
+
+        if (!CharacterController.isGrounded)
         {
-            started = true;
-            movement.y = jumpSpeed;
+            currentY += Physics.gravity.y * gravityScalar * Time.deltaTime;
         }
+        movement.y = currentY;
 
+        CharacterController.Move(movement * Time.deltaTime);
 
-        movement *= Time.deltaTime;
-
-        CharacterController.Move(movement);
-
-        //CameraTransform.LocalPosition = new Unity.Mathematics.double3(CharacterController.transform.localPosition + offset);
-
+        //Change animation
+        Debug.Log(CharacterController.velocity.magnitude);
+        if(CharacterController.velocity.magnitude == 0f)
+        {
+            Animator.SetBool("IsWalking", false); 
+            Animator.SetBool("IsRunning", false);
+        }
+        else if(CharacterController.velocity.magnitude > 0f && CharacterController.velocity.magnitude < 3f)
+        {
+            Animator.SetBool("IsWalking", true);
+        }
+        else
+        {
+            Animator.SetBool("IsRunning", true);
+        }
         // Bring map man above the map if he falls below.
-        if (CharacterController.transform.position.y < 0)
+        if (characterHP.UniversePosition.y < 0)
         {
-            CharacterController.transform.position.Set(CharacterController.transform.position.x, 100, CharacterController.transform.position.z);
+            characterHP.UniversePosition = new Unity.Mathematics.double3(characterHP.UniversePosition.x, 50, characterHP.UniversePosition.z);
+            currentY = 0;
         }
     }
 }
