@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 480.02588, g: 535.3965, b: 610.3457, a: 1}
+  m_IndirectSpecularColor: {r: 480.0044, g: 535.7666, b: 612.0322, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -202,6 +202,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mapman
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dec07aed717f064439897cd81726237a, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 7439074276520894718, guid: dec07aed717f064439897cd81726237a, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -274,6 +278,7 @@ GameObject:
   - component: {fileID: 684003168}
   - component: {fileID: 684003167}
   - component: {fileID: 684003166}
+  - component: {fileID: 684003173}
   m_Layer: 0
   m_Name: ArcGISCamera
   m_TagString: MainCamera
@@ -539,6 +544,24 @@ MonoBehaviour:
     x: 1
     y: 1
     z: 1
+--- !u!114 &684003173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 684003164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cbef905615e02c4293c3a29b7e4266a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1681604017}
+  offset:
+    x: 0
+    y: 2.5
+    z: -3.5
+  speed: 0.05
 --- !u!850595691 &956311754
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -807,7 +830,7 @@ GameObject:
   - component: {fileID: 1681604019}
   m_Layer: 0
   m_Name: Hero
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -820,7 +843,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1681604014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -399.19168, y: -60, z: -332.2585}
+  m_LocalPosition: {x: -399.19168, y: 0, z: -332.2585}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 67376242}
@@ -840,10 +863,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position:
-    x: -73.570886
-    y: 45.499608
-    z: 40
-    SRWkid: 4326
+    x: -8189873.56672998
+    y: 5700520.474576027
+    z: 100
+    SRWkid: 3857
   rotation:
     Heading: 0
     Pitch: 90
@@ -863,7 +886,7 @@ MonoBehaviour:
   m_IsInitialized: 1
   m_LocalPosition:
     x: -8189873.56672998
-    y: 40
+    y: 100
     z: 5700520.474576027
   m_LocalRotation:
     value:
@@ -892,7 +915,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &1681604019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -905,4 +928,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dd65a2779696114fab783ee2098fd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnimationController: {fileID: 0}
+  AnimationController: {fileID: 9100000, guid: b70aeca021a9767458c4e6c4de8571e5, type: 2}
+  Speed: 5
+  jumpSpeed: 8
+  GravityValue: 9.8
+  CameraTransform: {fileID: 684003172}
+  offset: {x: 0, y: 2.5, z: -3.5}
