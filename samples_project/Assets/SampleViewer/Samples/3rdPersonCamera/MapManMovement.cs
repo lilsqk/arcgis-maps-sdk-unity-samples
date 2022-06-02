@@ -60,6 +60,7 @@ public class MapManMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 currentY = jumpSpeed;
+                Animator.SetBool("Jumping", true);
             }
         }
 
@@ -67,6 +68,7 @@ public class MapManMovement : MonoBehaviour
         if (!CharacterController.isGrounded)
         {
             currentY += Physics.gravity.y * gravityScalar * Time.deltaTime;
+            Animator.SetBool("Jumping", false);
         }
         movement.y = currentY;
 
