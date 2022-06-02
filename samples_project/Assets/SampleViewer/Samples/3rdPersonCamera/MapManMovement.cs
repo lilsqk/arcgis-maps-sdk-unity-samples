@@ -57,11 +57,20 @@ public class MapManMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        // Create movement vector.
         Vector3 movement = new Vector3(0f, 0f, 0f);
-        movement.x = Input.GetAxisRaw("Horizontal");
+
+        // Forward movement.
         movement.z = Input.GetAxisRaw("Vertical");
+        movement.x = Input.GetAxisRaw("Horizontal");
         movement *= Speed;
 
+        // rotation
+        var newQuat = Quaternion.LookRotation(movement, Vector3.up).normalized;
+        CharacterController.transform.rotation = Quaternion.RotateTowards(CharacterController.transform.rotation, newQuat, 700 * Time.deltaTime).normalized;
+        
+
+        // Handle jump.
         if (CharacterController.isGrounded)
         {
             if (Input.GetButtonDown("Jump"))
@@ -70,6 +79,7 @@ public class MapManMovement : MonoBehaviour
             }
         }
 
+        // Handle falling.
         if (!CharacterController.isGrounded)
         {
             currentY += Physics.gravity.y * gravityScalar * Time.deltaTime;
@@ -79,20 +89,23 @@ public class MapManMovement : MonoBehaviour
         CharacterController.Move(movement * Time.deltaTime);
 
         //Change animation
-        Debug.Log(CharacterController.velocity.magnitude);
+        var horizontalMagnitude = new Vector3(CharacterController.velocity.x, 0, CharacterController.velocity.z).magnitude;
+        Debug.Log(horizontalMagnitude);
+        Animator.SetBool("IsWalking", horizontalMagnitude > 0f);
 
-        Animator.SetBool("IsWalking", CharacterController.velocity.magnitude > 0f);
-        //if (CharacterController.velocity.magnitude == 0f)
+        //if (horizontalMagnitude == 0f)
         //{
-        //    Animator.SetBool("IsWalking", false); 
+        //    Animator.SetBool("IsWalking", false);
         //    Animator.SetBool("IsRunning", false);
         //}
-        //else if(CharacterController.velocity.magnitude > 0f && CharacterController.velocity.magnitude < 5f)
+        //else if (5f > horizontalMagnitude && horizontalMagnitude > 0f )
         //{
         //    Animator.SetBool("IsWalking", true);
+        //    Animator.SetBool("IsRunning", false);
         //}
         //else
         //{
+        //    Animator.SetBool("IsWalking", false);
         //    Animator.SetBool("IsRunning", true);
         //}
         // Bring map man above the map if he falls below.
