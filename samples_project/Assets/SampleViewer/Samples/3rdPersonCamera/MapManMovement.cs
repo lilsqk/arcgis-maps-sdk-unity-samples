@@ -8,6 +8,7 @@ public class MapManMovement : MonoBehaviour
     [SerializeField] private Animator Animator;
 
     [SerializeField] private float Speed = 10f;
+    [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravityScalar = 1f;
 
@@ -67,7 +68,7 @@ public class MapManMovement : MonoBehaviour
 
         // rotation
         var newQuat = Quaternion.LookRotation(movement, Vector3.up).normalized;
-        CharacterController.transform.rotation = Quaternion.RotateTowards(CharacterController.transform.rotation, newQuat, 700 * Time.deltaTime).normalized;
+        CharacterController.transform.localRotation = Quaternion.Slerp(CharacterController.transform.localRotation, newQuat, RotationSpeed * Time.deltaTime).normalized;
         
 
         // Handle jump.
@@ -109,9 +110,10 @@ public class MapManMovement : MonoBehaviour
         //    Animator.SetBool("IsRunning", true);
         //}
         // Bring map man above the map if he falls below.
-        if (characterHP.UniversePosition.y < 0)
+        if (transform.localPosition.y < -50)
         {
-            characterHP.UniversePosition = new Unity.Mathematics.double3(characterHP.UniversePosition.x, 50, characterHP.UniversePosition.z);
+            //characterHP.UniversePosition = new Unity.Mathematics.double3(characterHP.UniversePosition.x, 50, characterHP.UniversePosition.z);
+            CharacterController.transform.localPosition = new Vector3(transform.localPosition.x, 50, transform.localPosition.z); 
             currentY = 0;
         }
     }
