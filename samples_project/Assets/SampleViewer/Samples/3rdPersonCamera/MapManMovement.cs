@@ -4,7 +4,7 @@ using UnityEngine;
 public class MapManMovement : MonoBehaviour
 {
     [SerializeField] private Animator Animator;
-    [SerializeField] private float Speed = 10f;
+    [SerializeField] private float Speed = 5f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravityScalar = 1f;
@@ -41,7 +41,11 @@ public class MapManMovement : MonoBehaviour
         // Forward movement.
         movement.z = Input.GetAxisRaw("Vertical");
         movement.x = Input.GetAxisRaw("Horizontal");
-        movement *= Speed;
+
+        // This is the shift key by default.
+        bool running = Input.GetButton("Fire3");
+
+        movement *= running ? Speed * 2 : Speed;
 
         // Rotate hero to match current movement direction.
         if (movement != Vector3.zero)
@@ -70,7 +74,9 @@ public class MapManMovement : MonoBehaviour
 
         // Change animation when moving.
         var horizontalMagnitude = new Vector3(CharacterController.velocity.x, 0, CharacterController.velocity.z).magnitude;
-        Animator.SetBool("IsWalking", horizontalMagnitude > 0f);
+        
+        Animator.SetBool("IsRunning", horizontalMagnitude > 0f && running);
+        Animator.SetBool("IsWalking", horizontalMagnitude > 0f && !running);
 
         // Bring map man above the map if he falls below.
         if (transform.localPosition.y < -50)
