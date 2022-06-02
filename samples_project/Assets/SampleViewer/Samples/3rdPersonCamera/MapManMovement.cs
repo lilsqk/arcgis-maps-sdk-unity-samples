@@ -1,52 +1,23 @@
 using Esri.HPFramework;
-using System;
-using UnityEditor.Animations;
 using UnityEngine;
 
 public class MapManMovement : MonoBehaviour
 {
     [SerializeField] private Animator Animator;
-
     [SerializeField] private float Speed = 10f;
     [SerializeField] private float RotationSpeed = 10f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravityScalar = 1f;
 
-    [SerializeField] private HPTransform CameraTransform;
     [SerializeField] private Vector3 offset;
 
     private float currentY = 0f;
 
-    private bool started = false;
+    private bool terrainLoaded = false;
 
     private CharacterController CharacterController;
 
     private HPTransform characterHP;
-
-#if ENABLE_INPUT_SYSTEM
-    InputAction movement;
-    InputAction jump;
-
-    void Start()
-    {
-        movement = new InputAction("PlayerMovement", binding: "<Gamepad>/leftStick");
-        movement.AddCompositeBinding("Dpad")
-            .With("Up", "<Keyboard>/w")
-            .With("Up", "<Keyboard>/upArrow")
-            .With("Down", "<Keyboard>/s")
-            .With("Down", "<Keyboard>/downArrow")
-            .With("Left", "<Keyboard>/a")
-            .With("Left", "<Keyboard>/leftArrow")
-            .With("Right", "<Keyboard>/d")
-            .With("Right", "<Keyboard>/rightArrow");
-
-        jump = new InputAction("PlayerJump", binding: "<Gamepad>/a");
-        jump.AddBinding("<Keyboard>/space");
-
-        movement.Enable();
-        jump.Enable();
-    }
-#endif
 
     // Start is called before the first frame update
     private void Start()
@@ -58,6 +29,12 @@ public class MapManMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!terrainLoaded)
+        {
+            terrainLoaded = TerrainLoaded();
+            return;
+        }
+
         // Create movement vector.
         Vector3 movement = new Vector3(0f, 0f, 0f);
 
@@ -66,10 +43,12 @@ public class MapManMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement *= Speed;
 
-        // rotation
-        var newQuat = Quaternion.LookRotation(movement, Vector3.up).normalized;
-        CharacterController.transform.localRotation = Quaternion.Slerp(CharacterController.transform.localRotation, newQuat, RotationSpeed * Time.deltaTime).normalized;
-        
+        // Rotate hero to match current movement direction.
+        if (movement != Vector3.zero)
+        {
+            var newQuat = Quaternion.LookRotation(movement, Vector3.up).normalized;
+            CharacterController.transform.localRotation = Quaternion.Slerp(CharacterController.transform.localRotation, newQuat, RotationSpeed * Time.deltaTime).normalized;
+        }
 
         // Handle jump.
         if (CharacterController.isGrounded)
@@ -80,7 +59,7 @@ public class MapManMovement : MonoBehaviour
             }
         }
 
-        // Handle falling.
+        // Handle gravity.
         if (!CharacterController.isGrounded)
         {
             currentY += Physics.gravity.y * gravityScalar * Time.deltaTime;
@@ -89,32 +68,21 @@ public class MapManMovement : MonoBehaviour
 
         CharacterController.Move(movement * Time.deltaTime);
 
-        //Change animation
+        // Change animation when moving.
         var horizontalMagnitude = new Vector3(CharacterController.velocity.x, 0, CharacterController.velocity.z).magnitude;
-        Debug.Log(horizontalMagnitude);
         Animator.SetBool("IsWalking", horizontalMagnitude > 0f);
 
-        //if (horizontalMagnitude == 0f)
-        //{
-        //    Animator.SetBool("IsWalking", false);
-        //    Animator.SetBool("IsRunning", false);
-        //}
-        //else if (5f > horizontalMagnitude && horizontalMagnitude > 0f )
-        //{
-        //    Animator.SetBool("IsWalking", true);
-        //    Animator.SetBool("IsRunning", false);
-        //}
-        //else
-        //{
-        //    Animator.SetBool("IsWalking", false);
-        //    Animator.SetBool("IsRunning", true);
-        //}
         // Bring map man above the map if he falls below.
         if (transform.localPosition.y < -50)
         {
-            //characterHP.UniversePosition = new Unity.Mathematics.double3(characterHP.UniversePosition.x, 50, characterHP.UniversePosition.z);
-            CharacterController.transform.localPosition = new Vector3(transform.localPosition.x, 50, transform.localPosition.z); 
+            CharacterController.transform.localPosition = new Vector3(transform.localPosition.x, 50, transform.localPosition.z);
             currentY = 0;
         }
+    }
+
+    private bool TerrainLoaded()
+    {
+        // Raycast downwards to check if mesh colliders have loaded for the terrain.
+        return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo);
     }
 }
