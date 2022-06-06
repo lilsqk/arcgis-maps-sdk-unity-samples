@@ -81,11 +81,11 @@ public class MapManMovement : MonoBehaviour
         Animator.SetBool("IsWalking", horizontalMagnitude > 0f && !running);
 
         // Bring map man above the map if he falls below.
-        if (transform.localPosition.y < -50)
-        {
-            CharacterController.transform.localPosition = new Vector3(transform.localPosition.x, 50, transform.localPosition.z);
-            currentY = 0;
-        }
+        //if (transform.localPosition.y < -50)
+        //{
+        //    CharacterController.transform.localPosition = new Vector3(transform.localPosition.x, 50, transform.localPosition.z);
+        //    currentY = 0;
+        //}
     }
 
     private bool TerrainLoaded()
