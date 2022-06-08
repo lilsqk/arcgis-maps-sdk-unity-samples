@@ -1,11 +1,12 @@
 using Esri.HPFramework;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class MapManMovement : MonoBehaviour
 {
     [SerializeField] private Animator Animator;
     [SerializeField] private float Speed = 5f;
-    [SerializeField] private float RotationSpeed = 10f;
+    [SerializeField] private float RotationSpeed = 1f;
     [SerializeField] private float jumpSpeed = 10f;
     [SerializeField] private float gravityScalar = 1f;
 
@@ -38,21 +39,18 @@ public class MapManMovement : MonoBehaviour
         // Create movement vector.
         Vector3 movement = new Vector3(0f, 0f, 0f);
 
-        // Forward movement.
-        movement.z = Input.GetAxisRaw("Vertical");
-        movement.x = Input.GetAxisRaw("Horizontal");
+        // Rotate the player character based on horizontal input.
+        CharacterController.transform.Rotate(0, Input.GetAxisRaw("Horizontal") * RotationSpeed * 360f * Time.deltaTime, 0);
+
+        movement = CharacterController.transform.TransformDirection(Vector3.forward);
+
+        // Forward movement based on the up and down input.
+        movement *= Input.GetAxisRaw("Vertical");
 
         // This is the shift key by default.
         bool running = Input.GetButton("Fire3");
 
         movement *= running ? Speed * 2 : Speed;
-
-        // Rotate hero to match current movement direction.
-        if (movement != Vector3.zero)
-        {
-            var newQuat = Quaternion.LookRotation(movement, Vector3.up).normalized;
-            CharacterController.transform.localRotation = Quaternion.Slerp(CharacterController.transform.localRotation, newQuat, RotationSpeed * Time.deltaTime).normalized;
-        }
 
         // Handle jump.
         if (CharacterController.isGrounded)
@@ -76,16 +74,16 @@ public class MapManMovement : MonoBehaviour
 
         // Change animation when moving.
         var horizontalMagnitude = new Vector3(CharacterController.velocity.x, 0, CharacterController.velocity.z).magnitude;
-        
+
         Animator.SetBool("IsRunning", horizontalMagnitude > 0f && running);
         Animator.SetBool("IsWalking", horizontalMagnitude > 0f && !running);
 
-        // Bring map man above the map if he falls below.
-        //if (transform.localPosition.y < -50)
-        //{
-        //    CharacterController.transform.localPosition = new Vector3(transform.localPosition.x, 50, transform.localPosition.z);
-        //    currentY = 0;
-        //}
+        // Bring character above the map if it falls below.
+        if (characterHP.UniversePosition.y < -50)
+        {
+            characterHP.UniversePosition = new double3(characterHP.UniversePosition.x, 50, characterHP.UniversePosition.z);
+            currentY = 0;
+        }
     }
 
     private bool TerrainLoaded()
