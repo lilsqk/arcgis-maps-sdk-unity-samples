@@ -1,4 +1,5 @@
 using Esri.HPFramework;
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class MapManMovement : MonoBehaviour
 
     [SerializeField] private Vector3 offset;
 
-    private float currentY = 0f;
+    private float currentDownwardVelocity = 0f;
 
     private bool terrainLoaded = false;
 
@@ -42,10 +43,9 @@ public class MapManMovement : MonoBehaviour
         // Rotate the player character based on horizontal input.
         CharacterController.transform.Rotate(0, Input.GetAxisRaw("Horizontal") * RotationSpeed * 360f * Time.deltaTime, 0);
 
+        // Move forward in the direction of the character controller.
         movement = CharacterController.transform.TransformDirection(Vector3.forward);
-
-        // Forward movement based on the up and down input.
-        movement *= Input.GetAxisRaw("Vertical");
+        movement *= Math.Max(Input.GetAxisRaw("Vertical"), 0);
 
         // This is the shift key by default.
         bool running = Input.GetButton("Fire3");
@@ -58,7 +58,7 @@ public class MapManMovement : MonoBehaviour
             Animator.SetBool("Landing", true);
             if (Input.GetButtonDown("Jump"))
             {
-                currentY = jumpSpeed;
+                currentDownwardVelocity = jumpSpeed;
                 Animator.SetBool("Jumping", true);
             }
         }
@@ -66,11 +66,11 @@ public class MapManMovement : MonoBehaviour
         // Handle gravity.
         if (!CharacterController.isGrounded)
         {
-            currentY += Physics.gravity.y * gravityScalar * Time.deltaTime;
+            currentDownwardVelocity += Physics.gravity.y * gravityScalar * Time.deltaTime;
             Animator.SetBool("Jumping", false);
             Animator.SetBool("Landing", false);
         }
-        movement.y = currentY;
+        movement.y = currentDownwardVelocity;
 
         CharacterController.Move(movement * Time.deltaTime);
 
@@ -84,13 +84,13 @@ public class MapManMovement : MonoBehaviour
         if (characterHP.UniversePosition.y < -50)
         {
             characterHP.UniversePosition = new double3(characterHP.UniversePosition.x, 50, characterHP.UniversePosition.z);
-            currentY = 0;
+            currentDownwardVelocity = 0;
         }
     }
 
     private bool TerrainLoaded()
     {
         // Raycast downwards to check if mesh colliders have loaded for the terrain.
-        return Physics.Raycast(transform.position, Vector3.down, out RaycastHit hitInfo);
+        return Physics.Raycast(transform.position, Vector3.down);
     }
 }

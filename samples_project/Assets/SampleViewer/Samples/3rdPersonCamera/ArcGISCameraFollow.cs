@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class ArcGISCameraFollow : MonoBehaviour
 {
+    [SerializeField] private HPTransform target;
+    [SerializeField] private double3 offset;
+    [SerializeField] private bool followEnabled = true;
+    [SerializeField] private bool lookEnabled = true;
+    [SerializeField] private float cameraSpeed = 1.0f;
+
     private HPTransform cameraTransform;
-    public HPTransform target;
-    public double3 offset;
-    public bool followEnabled = true;
-    public bool lookEnabled = true;
-    public float cameraSpeed = 1.0f;
 
     // Start is called before the first frame update
     private void Start()
