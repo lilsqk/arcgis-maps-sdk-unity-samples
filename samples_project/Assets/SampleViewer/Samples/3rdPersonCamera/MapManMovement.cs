@@ -55,6 +55,7 @@ public class MapManMovement : MonoBehaviour
         // Handle jump.
         if (CharacterController.isGrounded)
         {
+            Animator.SetBool("Landing", true);
             if (Input.GetButtonDown("Jump"))
             {
                 currentY = jumpSpeed;
@@ -67,6 +68,7 @@ public class MapManMovement : MonoBehaviour
         {
             currentY += Physics.gravity.y * gravityScalar * Time.deltaTime;
             Animator.SetBool("Jumping", false);
+            Animator.SetBool("Landing", false);
         }
         movement.y = currentY;
 
