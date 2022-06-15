@@ -1,0 +1,49 @@
+#pragma kernel CSMain
+
+#define NUM_TEXTURES_PER_PASS 8
+
+RWTexture2D<float4> Output;
+
+int NumTextures;
+bool OutputShouldBeSampled;
+
+Texture2D<float4> Input[NUM_TEXTURES_PER_PASS];
+#ifndef SHADER_API_GLES3
+SamplerState samplerInput[NUM_TEXTURES_PER_PASS];
+#endif
+
+float4 Opacities[(NUM_TEXTURES_PER_PASS / 4) + (NUM_TEXTURES_PER_PASS < 4)];
+float4 OffsetsAndScales[NUM_TEXTURES_PER_PASS];
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+	uint width, height;
+	Output.GetDimensions(width, height);
+
+	if (id.x < width && id.y < height)
+	{
+		float3 output = 1.0f;
+		float2 uv = float2((id.x + 0.5f) / width, (id.y + 0.5f) / height);
+
+		if (OutputShouldBeSampled)
+		{
+			output = Output[id.xy].rgb;
+		}
+
+		[unroll]
+		for (int i = 0; i < NumTextures; i++)
+		{
+#ifndef SHADER_API_GLES3
+			float4 texSample = Input[i].SampleLevel(samplerInput[i], uv * OffsetsAndScales[i].z + OffsetsAndScales[i].xy, 0);
+#else
+			int2 sampleCoord = int2((uv * OffsetsAndScales[i].z + OffsetsAndScales[i].xy) * float2(width, height));
+			float4 texSample = Input[i][sampleCoord];
+#endif
+
+			output = lerp(output, texSample.rgb, Opacities[i / 4][i % 4] * texSample.a);
+		}
+
+		Output[id.xy] = float4(output, 1.0f);
+	}
+}

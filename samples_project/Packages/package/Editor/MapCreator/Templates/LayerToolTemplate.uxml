@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+	xsi:schemaLocation="
+                        UnityEngine.UIElements ../../../../../../UIElementsSchema/UnityEngine.UIElements.xsd
+                        UnityEditor.UIElements ../../../../../../UIElementsSchema/UnityEditor.UIElements.xsd
+                        UnityEditor.PackageManager.UI ../../../../../../UIElementsSchema/UnityEditor.PackageManager.UI.xsd"
+>
+
+<ScrollView>
+
+	<VisualElement class="tool-holder">
+
+	    <Foldout class="main-foldout add-data-foldout" text="Add Data">
+        
+			<editor:EnumField label="Type" name="add-data-type-selector" type="Esri.ArcGISMapsSDK.Components.LayerTypes, ArcGISMapsSDK"/>
+
+            <VisualElement class="file-selector-holder">
+
+				<TextField name="add-data-layer-source" label="Source"/>
+				<Button name="add-data-file-selector" class="button-file-selector" text="..."/>
+
+            </VisualElement>
+
+			<TextField label="Name" name="add-data-name-text"/>
+
+			<VisualElement name="add-data-config-selector"/>
+
+			<VisualElement class="add-data-button-holder">
+
+				<VisualElement class="add-data-holder-spacer"/>
+				<Button class="button-add-data" name="button-add-data-clear" text="Clear"/>
+				<Button class="button-add-data" name="button-add-data-add" text="Add"/>
+			
+			</VisualElement>
+
+        </Foldout>
+
+		<Foldout class="main-foldout" text="Layers">
+
+			<VisualElement name="layers-holder"/>
+
+        </Foldout>
+
+	</VisualElement>
+
+</ScrollView>
+
+</UXML>

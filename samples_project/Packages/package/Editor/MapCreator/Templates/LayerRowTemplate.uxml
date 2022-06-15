@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+	xsi:schemaLocation="
+                        UnityEngine.UIElements ../../../../../../UIElementsSchema/UnityEngine.UIElements.xsd
+                        UnityEditor.UIElements ../../../../../../UIElementsSchema/UnityEditor.UIElements.xsd
+                        UnityEditor.PackageManager.UI ../../../../../../UIElementsSchema/UnityEditor.PackageManager.UI.xsd"
+>
+
+<VisualElement class="layer-name-holder">
+
+	<Toggle name="layer-enable-toggle" value="true"/>
+	<Label class="layer-name-label" text="Layer Name"/>
+    <TextField class="layer-name-text"/>
+    <Button class="kebab-button" name="layer-options-button" text="..."/>
+
+</VisualElement>
+
+<Foldout class="foldout-layer-row">
+
+    <VisualElement class="layer-opacity-holder">
+
+		<Slider label="Opacity" class="layer-opacity-slider" low-value="0" high-value="1" value="1"/>
+		<editor:FloatField class="layer-opacity-field" value="1.0"/>
+
+    </VisualElement>
+
+	<editor:EnumField label="Type" class="layer-type-selector" type="Esri.ArcGISMapsSDK.Components.LayerTypes, ArcGISMapsSDK"/>
+
+	<VisualElement class="file-selector-holder layer-source-selector-holder">
+
+		<TextField name="layer-source" label="Source"/>
+		<Button name="layer-file-selector" class="button-file-selector" text="..."/>
+
+	</VisualElement>
+
+</Foldout>
+
+</UXML>

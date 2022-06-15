@@ -1,9 +1,15 @@
 {
   "dependencies": {
     "com.esri.arcgis-maps-sdk": {
+<<<<<<< Updated upstream
       "version": "file:C:/Users/sam12608/Downloads/com.esri.arcgis-maps-sdk-1.0.0.tgz",
       "depth": 0,
       "source": "local-tarball",
+=======
+      "version": "file:package",
+      "depth": 0,
+      "source": "embedded",
+>>>>>>> Stashed changes
       "dependencies": {
         "com.unity.burst": "1.6.5",
         "com.unity.mathematics": "1.2.6"
@@ -68,7 +74,7 @@
     },
     "com.unity.nuget.newtonsoft-json": {
       "version": "3.0.2",
-      "depth": 2,
+      "depth": 0,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"

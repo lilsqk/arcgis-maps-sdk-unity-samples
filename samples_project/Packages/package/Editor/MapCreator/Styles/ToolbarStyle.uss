@@ -1,0 +1,82 @@
+.toolbar-box {
+	background-color: rgb(25,25,25);
+	margin: 10px;
+	border-radius: 5px;
+	align-items: stretch;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 0px;
+	padding-top: 6px;
+	padding-left: 6px;
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.toolbar-box Button {
+	height: 42px;
+	min-width: 42px;
+	max-width: 42px;
+	border-width: 0px;
+	flex: 1;
+	align-items: stretch;
+	justify-content: center; 
+	background-color: transparent;
+	margin: 0px;
+	margin-right: 6px;
+	margin-bottom: 6px;
+}
+
+.toolbar-box Button:hover {
+	background-color: var(--unity-colors-button-background-hover);
+}
+
+.toolbar-box Button.button-selected {
+	background-color: var(--unity-colors-button-background-hover);
+}
+
+.toolbar-box Button Image {
+	width: 21px;
+	height: 21px;
+	margin-top: 4px;
+	margin-left: 7px;
+	align-self: center;
+}
+
+.toolbar-box Button Label {
+	padding-top: 4px;
+	-unity-text-align: middle-center;
+	font-size: 9px;
+}
+
+.toolbar-box #icon-open-map-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/new_map_icon.png");
+}
+
+.toolbar-box #icon-open-basemap-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/basemap_icon.png");
+}
+
+.toolbar-box #icon-open-elevation-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/elevation_icon.png");
+}
+
+.toolbar-box #icon-open-layers-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/layers_icon.png");
+}
+
+.toolbar-box #icon-open-auth-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/authentication_icon.png");
+}
+
+.toolbar-box #icon-open-camera-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/camera_icon.png");
+}
+
+.toolbar-box #icon-open-settings-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/settings_icon.png");
+}
+
+.toolbar-box #icon-open-help-tool {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorIcons/help_icon.png");
+}

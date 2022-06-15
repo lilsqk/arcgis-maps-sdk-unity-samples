@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+    xsi:schemaLocation="
+                        UnityEngine.UIElements ../../../../../../UIElementsSchema/UnityEngine.UIElements.xsd
+                        UnityEditor.UIElements ../../../../../../UIElementsSchema/UnityEditor.UIElements.xsd
+                        UnityEditor.PackageManager.UI ../../../../../../UIElementsSchema/UnityEditor.PackageManager.UI.xsd"
+>
+
+<VisualElement class="elevation-holder">
+
+	<ScrollView>
+
+        <VisualElement class="card-holder"/>
+        
+        <VisualElement name="custom-fields-holder">
+
+            <VisualElement class="file-selector-holder">
+
+				<TextField name="custom-elevation-source" label="Source"/>
+				<Button name="elevation-file-selector" class="button-file-selector" text="..."/>
+
+            </VisualElement>
+
+        </VisualElement>
+
+    </ScrollView>
+
+</VisualElement>
+
+</UXML>

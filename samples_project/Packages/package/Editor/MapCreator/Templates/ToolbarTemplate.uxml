@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+	xsi:schemaLocation="
+                        UnityEngine.UIElements ../../../../../../UIElementsSchema/UnityEngine.UIElements.xsd
+                        UnityEditor.UIElements ../../../../../../UIElementsSchema/UnityEditor.UIElements.xsd
+                        UnityEditor.PackageManager.UI ../../../../../../UIElementsSchema/UnityEditor.PackageManager.UI.xsd"
+>
+
+<VisualElement class="toolbar-box">
+
+	<Button name="button-open-map-tool">
+		<Image name="icon-open-map-tool"/>
+		<Label text="Map"/>
+	</Button>
+	
+	<Button name="button-open-camera-tool">
+		<Image name="icon-open-camera-tool"/>
+		<Label text="Camera"/>
+	</Button>
+
+	<Button name="button-open-basemap-tool">
+		<Image name="icon-open-basemap-tool"/>
+		<Label text="Basemap"/>
+	</Button>
+	
+	<Button name="button-open-elevation-tool">
+		<Image name="icon-open-elevation-tool"/>
+		<Label text="Elevation"/>
+	</Button>
+
+	<Button name="button-open-layers-tool">
+		<Image name="icon-open-layers-tool"/>
+		<Label text="Layers"/>
+	</Button>
+	
+	<Button name="button-open-auth-tool">
+		<Image name="icon-open-auth-tool"/>
+		<Label text="Auth"/>
+	</Button>
+
+	<Button name="button-open-settings-tool">
+		<Image name="icon-open-settings-tool"/>
+		<Label text="Settings"/>
+	</Button>
+
+	<Button name="button-open-help-tool">
+		<Image name="icon-open-help-tool"/>
+		<Label text="Help"/>
+	</Button>
+
+</VisualElement>
+
+</UXML>

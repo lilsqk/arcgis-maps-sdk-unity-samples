@@ -24,6 +24,29 @@ public class SampleSwitcher : MonoBehaviour
     public List<string> SceneList = new List<string>();
     private string PipelineType;
     private string SceneName;
+<<<<<<< Updated upstream
+=======
+    private bool EnablePipelineSwitching = true;
+
+    private void Update()
+    {
+        // API Script handles api key differently than the mapcomponent
+        var api = FindObjectOfType<SampleAPIMapCreator>();
+        if (api != null)
+        {
+            if (api.APIKey == "")
+            {
+                api.APIKey = APIKey;
+            }
+            return;
+        }
+        var mapComponent = FindObjectOfType<ArcGISMapComponent>();
+        if (mapComponent != null && mapComponent.APIKey == "")
+        {
+            mapComponent.APIKey = APIKey;
+        }
+    }
+>>>>>>> Stashed changes
 
     private void Start()
     {
@@ -42,7 +65,14 @@ public class SampleSwitcher : MonoBehaviour
 #endif
 
 #if USE_URP_PACKAGE
+<<<<<<< Updated upstream
         PipelineTypeDropdown.options.Add(new Dropdown.OptionData("URP"));
+=======
+            PipelineTypeDropdown.options.Add(new Dropdown.OptionData("URP"));
+
+            //Debug.LogError("There is a bug where this project does not work with URP, please remove it until this is resolved");
+            //return;
+>>>>>>> Stashed changes
 #endif
 
         if (PipelineTypeDropdown.options.Count == 0)

@@ -1,0 +1,98 @@
+.card-holder {
+	margin-top: 10px;
+	margin-left: 20px;
+	margin-right: 20px;
+	margin-bottom: 0px;
+	align-items: stretch;
+	justify-content: center; 
+}
+
+.card {
+	margin-bottom: 10px;
+	flex: 1;
+	width: auto;
+}
+
+.card-image {
+	height: 60px;
+	-unity-background-scale-mode: scale-and-crop;
+}
+
+.card-info-holder {
+	background-color: var(--unity-colors-inspector_titlebar-background);
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start; 
+	padding: 4px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	height: 22px;
+	border-top-width: 1px;
+	border-top-color: black;
+	border-bottom-width: 1px;
+	border-bottom-color: rgb(45,45,45);
+	overflow: hidden;
+}
+
+.card-toggle {
+	margin: 0px;
+	margin-left: 3px;
+}
+
+.card-label {
+	margin-left: 8px;
+	width: auto;
+	overflow: hidden;
+}
+
+.card-warning-tooltip {
+	background-color: var(--unity-colors-inspector_titlebar-background);
+	border-width: 1px;
+	border-color: black;
+	flex: 1 1;
+	position: absolute;
+	align-self: flex-end;
+	justify-content: flex-start;
+	padding: 4px;
+	overflow: hidden;
+	margin-left: 20px;
+}
+
+.api-key-tooltip-text {
+	flex-wrap: wrap;
+	white-space: normal;
+}
+
+#custom-fields-holder {
+	margin-left: 50px;
+	margin-right: 18px;
+	margin-bottom: 30px;
+}
+
+#custom-fields-holder Label {
+	min-width: 100px;
+}
+
+#custom .card {
+	margin-bottom: 4px;
+}
+
+.card-image.card-basemap-imagery {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorImages/basemap_01_imagery.png");
+}
+
+.card-image.card-basemap-oceans {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorImages/basemap_05_oceans.png");
+}
+
+.card-image.card-basemap-custom {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorImages/basemap_08_custom.png");
+}
+
+.card-image.card-elevation-default {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorImages/elevation_01_default.png");
+}
+
+.card-image.card-elevation-custom {
+	background-image: url("../Resources/ArcGISMapsSDKEditor/MapCreatorImages/elevation_02_custom.png");
+}
